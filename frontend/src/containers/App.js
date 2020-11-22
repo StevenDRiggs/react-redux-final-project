@@ -1,25 +1,30 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from 'react-router-dom'
 
 import ImagesContainer from './ImagesContainer'
+import Image from '../components/Image'
+import { loadImages } from '../actions/ImageActions'
 
 import './App.css'
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.loadImages()
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
           <Switch>
-            <Route path='/images'>
-              <ImagesContainer />
-            </Route>
+            <Route exact path='/images' component={ImagesContainer} />
+            <Route path='/images/:image_id' component={Image} />
           </Switch>
         </Router>
       </div>
@@ -28,4 +33,11 @@ class App extends Component {
 }
 
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    loadImages: () => dispatch(loadImages()),
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(App)
