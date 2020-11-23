@@ -5,9 +5,9 @@ export const loadImages = () => {
   return dispatch => {
     fetch(`${DATABASE_URL}/images`)
     .then(response => response.json())
-    .then(json => dispatch({
+    .then(imagesArr => dispatch({
       type: 'SET_IMAGES',
-      images: json,
+      images: imagesArr,
     }))
   }
 }

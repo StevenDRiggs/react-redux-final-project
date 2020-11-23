@@ -8,6 +8,7 @@ import {
 
 import ImagesContainer from './ImagesContainer'
 import Image from '../components/Image'
+import Signup from '../forms/Signup'
 import { loadImages } from '../actions/ImageActions'
 
 import './App.css'
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/images' component={ImagesContainer} />
             <Route path='/images/:image_id' component={Image} />
+            <Route path='/signup' component={Signup} />
           </Switch>
         </Router>
       </div>
