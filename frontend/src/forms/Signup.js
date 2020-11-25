@@ -40,8 +40,8 @@ class Signup extends Component {
     return (
       <div className="Signup">
         <form className='signup-form' onSubmit={this.handleSubmit}>
-          <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
-          <input type='password' name='password' value={this.state.password} onChange={this.handleChange} />
+          <input type='text' name='username' value={this.state.user.username} onChange={this.handleChange} />
+          <input type='password' name='password' value={this.state.user.password} onChange={this.handleChange} />
           <button type='submit'>Submit</button>
         </form>
       </div>
