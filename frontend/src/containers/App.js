@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   render() {
-    if (!this.props.user) {
+    console.log(this.props)
+    if (!(this.props.user && this.props.user.userId)) {
       return (
         <Router>
           <Switch>

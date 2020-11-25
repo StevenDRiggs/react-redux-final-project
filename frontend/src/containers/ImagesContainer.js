@@ -7,10 +7,22 @@ import './ImagesContainer.css'
 
 
 class ImagesContainer extends Component {
+  state = {
+    images: this.props.images,
+  }
+
+  componentDidMount() {
+    if (this.props.user.userImagesOnly) {
+      this.setState({
+        images: this.props.images.filter(image => image.userIds.includes(this.props.user.userId)),
+      })
+    }
+  }
+
   render() {
     return (
       <div className="ImagesContainer">
-        {this.props.images.map(image => <Image key={image.id} src={image.url} />)}
+        {this.state.images.map(image => <Image key={image.id} src={image.url} />)}
       </div>
     )
   }
@@ -20,6 +32,7 @@ class ImagesContainer extends Component {
 const mapStateToProps = state => {
   return {
     images: state.images,
+    user: state.user,
   }
 }
 
