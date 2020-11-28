@@ -30,9 +30,12 @@ export const loginUser = loginFormInfo => {
       body: JSON.stringify(loginFormInfo)
     })
     .then(response => response.json())
-    .then(json => dispatch({
+    .then(json => {
+      return json
+    })
+    .then(user => dispatch({
       type: 'LOGIN_USER',
-      userId: json.userId,
+      user,
     }))
   }
 }

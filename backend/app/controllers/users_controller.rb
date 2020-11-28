@@ -18,11 +18,25 @@ class UsersController < ApplicationController
   end
 
   def login
-    user = User.find_by(username: user_params[:username])
+    user = User.find_by(modified_username: user_params[:username].downcase.strip)
     user_valid = user ? user.authenticate(user_params[:password]) : false
-    user_id = user_valid ? user.id : nil
 
-    render json: {userId: user_id}
+    if user_valid
+      render json: {
+        userId: user.id,
+        avatarUrl: user.avatar,
+        username: user.username,
+      }
+    else
+      render json: {
+        username: user.username,
+        errors: user.errors.full_messages,
+      }
+    end
+  end
+
+  def show_images
+    render json: User.find(params[:user_id]).images
   end
 
   private

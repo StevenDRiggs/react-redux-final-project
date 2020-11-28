@@ -19,6 +19,15 @@ class App extends Component {
   componentDidMount() {
     this.props.loadImages()
   }
+  
+  componentDidUpdate() {
+    const { user, loadImages } = this.props
+    if (user && user.userId && user.userImagesOnly) {
+      loadImages(user.userId)
+    } else {
+      loadImages()
+    }
+  }
 
   render() {
     const user = this.props.user

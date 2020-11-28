@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Avatar from '../components/Avatar'
+import ImagesContainer from './ImagesContainer'
 
 import './UserDisplay.css'
 
 
 class UserDisplay extends Component {
   render() {
+    const { user, images } = this.props
     return (
       <div className='UserDisplay'>
-        <Avatar avatarUrl={this.props.user.avatarUrl} />
+        <Avatar avatarUrl={user.avatarUrl} />
+        <ImagesContainer images={images} />
       </div>
     )
   }
@@ -20,6 +23,7 @@ class UserDisplay extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    images: state.images,
   }
 }
 
