@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
   def create
-    user = User.create(user_params)
-
-    render json: {userId: user.id}
+    user = User.new(user_params)
+    user.avatar = "https://picsum.photos/100"
+    
+    if user.save
+      render json: {
+        userId: user.id,
+        avatarUrl: user.avatar,
+        username: user.username,
+      }
+    else
+      render json: {
+        username: user.username,
+        errors: user.errors.full_messages,
+      }
+    end
   end
 
   def login

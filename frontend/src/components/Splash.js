@@ -1,11 +1,14 @@
 import React from 'react'
+import {
+  NavLink,
+} from 'react-router-dom'
 
 
 const Splash = () => {
   return (
     <div className='Splash'>
-        <a href='/signup'><button>Sign Up</button></a>
-        <a href='/login'><button>Log In</button></a>
+      <NavLink to='/signup'><button>Sign Up</button></NavLink>
+      <NavLink to='/login'><button>Log In</button></NavLink>
     </div>
   )
 }

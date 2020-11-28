@@ -6,8 +6,7 @@ import {
   Route,
 } from 'react-router-dom'
 
-import ImagesContainer from './ImagesContainer'
-import Image from '../components/Image'
+import UserDisplay from './UserDisplay'
 import Signup from '../forms/Signup'
 import Login  from '../forms/Login'
 import Splash from '../components/Splash'
@@ -22,29 +21,19 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props)
-    if (!(this.props.user && this.props.user.userId)) {
-      return (
+    const user = this.props.user
+    return (
+      <div className='App'>
         <Router>
+          {user && user.errors ? <ul className='errors'>{user.errors.map((error, index) => <li key={index}>{error}</li>)}</ul> : null}
           <Switch>
+            {user && user.userId ? <Route path='/' component={UserDisplay} user={user} /> : <Route exact path='/' component={Splash} />}
             <Route path='/signup' component={Signup} />
             <Route path='/login' component={Login} />
-            <Route exact path='/' component={Splash} />
           </Switch>
         </Router>
-      )
-    } else {
-      return (
-        <div className="App">
-          <Router>
-            <Switch>
-              <Route exact path='/images' component={ImagesContainer} />
-              <Route path='/images/:image_id' component={Image} />
-            </Switch>
-          </Router>
-        </div>
-      )
-    }
+      </div>
+    )
   }
 }
 

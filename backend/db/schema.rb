@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_11_22_172734) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "avatar"
-    t.string "username", null: false
+    t.string "modified_username", null: false
   end
 
 end

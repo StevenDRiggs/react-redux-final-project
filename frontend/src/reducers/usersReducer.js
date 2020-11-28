@@ -2,7 +2,10 @@ const usersReducer = (state=null, action) => {
   switch (action.type) {
     case 'ADD_USER':
       return {
-        userId: action.userId,
+        userId: action.user.userId,
+        avatarUrl: action.user.avatarUrl,
+        username: action.user.username,
+        errors: action.user.errors,
         userImagesOnly: true,
       }
 

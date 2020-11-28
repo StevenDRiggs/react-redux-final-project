@@ -12,9 +12,9 @@ export const addUser = signupFormInfo => {
       body: JSON.stringify(signupFormInfo)
     })
     .then(response => response.json())
-    .then(json => dispatch({
+    .then(user => dispatch({
       type: 'ADD_USER',
-      userId: json.userId,
+      user,
     }))
   }
 }
