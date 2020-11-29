@@ -2,7 +2,7 @@ require 'faker'
 
 
 15.times do
-  Image.create(url: "https://picsum.photos/300")
+  Image.create(url: "https://picsum.photos/#{(100..300).to_a.sample}")
 end
 
 3.times do
