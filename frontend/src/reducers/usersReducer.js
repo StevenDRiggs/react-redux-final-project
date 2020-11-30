@@ -1,4 +1,4 @@
-const usersReducer = (state=null, action) => {
+const usersReducer = (state={}, action) => {
   switch (action.type) {
     case 'ADD_USER':
       return {
@@ -6,7 +6,7 @@ const usersReducer = (state=null, action) => {
         avatarUrl: action.user.avatarUrl,
         username: action.user.username,
         errors: action.user.errors,
-        userImagesOnly: true,
+        showAllImages: false,
       }
 
     case 'LOGIN_USER':
@@ -15,7 +15,7 @@ const usersReducer = (state=null, action) => {
         avatarUrl: action.user.avatarUrl,
         username: action.user.username,
         errors: action.user.errors,
-        userImagesOnly: true,
+        showAllImages: false,
       }
 
     default:

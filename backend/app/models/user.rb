@@ -8,7 +8,7 @@ class User < ApplicationRecord
   
 
   def username=(username)
-    self.modified_username = username.downcase
+    self.modified_username = username.downcase.strip
   end
 
   def username
