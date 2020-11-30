@@ -14,13 +14,13 @@ class UserDisplay extends Component {
     showAllImages: this.props.user.showAllImages,
   }
 
-  handleClick = event => {
+  handleCheckboxToggle = event => {
     const { user, loadImages, setShowAllImages } = this.props
     if (event.target.checked) {
       loadImages()
       setShowAllImages(true)
     } else {
-      loadImages(user.id)
+      loadImages(user.userId)
       setShowAllImages(false)
     }
 
@@ -29,13 +29,19 @@ class UserDisplay extends Component {
     })
   }
 
+  componentDidMount() {
+    const { user, loadImages } = this.props
+    loadImages(user.userId)
+  }
+
   render() {
     const { user } = this.props
     const { showAllImages } = this.state
     return (
       <div id='user-display'>
         <Avatar avatarUrl={user.avatarUrl} />
-        <input type='checkbox' name='show-all-images' defaultChecked={showAllImages} onClick={this.handleClick} />
+        <label htmlFor='show-all-images'>Show all images</label>
+        <input type='checkbox' name='show-all-images' id='show-all-images' defaultChecked={showAllImages} onClick={this.handleCheckboxToggle} />
         <ImagesContainer />
       </div>
     )
