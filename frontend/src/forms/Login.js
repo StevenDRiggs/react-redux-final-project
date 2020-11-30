@@ -37,11 +37,13 @@ class Login extends Component {
   }
 
   render() {
+    const { user } = this.state
     return (
-      <div className="Login">
+      <div className="login">
         <form className='login-form' onSubmit={this.handleSubmit}>
-          <input type='text' name='username' value={this.state.user.username} placeholder='Username' onChange={this.handleChange} />
-          <input type='password' name='password' value={this.state.user.password} placeholder='Password' onChange={this.handleChange} />
+          <h2>Log In</h2>
+          <input type='text' name='username' value={user.username} placeholder='Username' onChange={this.handleChange} />
+          <input type='password' name='password' value={user.password} placeholder='Password' onChange={this.handleChange} />
           <button type='submit'>Submit</button>
         </form>
       </div>

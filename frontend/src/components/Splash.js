@@ -6,7 +6,7 @@ import {
 
 const Splash = () => {
   return (
-    <div className='Splash'>
+    <div className='splash'>
       <NavLink to='/signup'><button>Sign Up</button></NavLink>
       <NavLink to='/login'><button>Log In</button></NavLink>
     </div>

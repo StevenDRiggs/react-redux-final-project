@@ -28,7 +28,6 @@ class UsersController < ApplicationController
       }
     else
       render json: {
-        username: user.username,
         errors: user.errors.full_messages,
       }
     end
