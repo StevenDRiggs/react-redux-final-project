@@ -39,3 +39,12 @@ export const loginUser = loginFormInfo => {
     }))
   }
 }
+
+export const setShowAllImages = bool => {
+  return dispatch => {
+    return {
+      type: 'SET_SHOW_ALL_IMAGES',
+      showAllImages: bool,
+    }
+  }
+}

@@ -18,6 +18,15 @@ const usersReducer = (state={}, action) => {
         showAllImages: false,
       }
 
+    case 'SET_SHOW_ALL_IMAGES':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          showAllImages: action.showAllImages,
+        },
+      }
+
     default:
       return state
   }
