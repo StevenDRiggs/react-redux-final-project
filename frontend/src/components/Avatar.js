@@ -4,10 +4,15 @@ import './Avatar.css'
 
 
 class Avatar extends Component {
+  componentDidMount() {
+
+  }
+
   render() {
+    const { avatarUrl } = this.props
     return (
       <div className='avatar'>
-        {props.avatarUrl ? <img src={props.avatarUrl} alt='user avatar' id='avatar' /> : null}
+        {avatarUrl ? <img src={avatarUrl} alt='user avatar' id='avatar' /> : null}
       </div>
     )
   }
