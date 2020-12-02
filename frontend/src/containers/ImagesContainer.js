@@ -8,7 +8,6 @@ import './ImagesContainer.css'
 
 const ImagesContainer = props => {
   const { images, errors } = props
-  // debugger
   return (
     <div className="ImagesContainer">
       {errors
