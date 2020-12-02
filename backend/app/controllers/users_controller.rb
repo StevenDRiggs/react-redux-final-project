@@ -26,9 +26,13 @@ class UsersController < ApplicationController
         avatarUrl: user.avatar,
         username: user.username,
       }
-    else
+    elsif user
       render json: {
         errors: user.errors.full_messages,
+      }
+    else
+      render json: {
+        errors: ['User not found']
       }
     end
   end

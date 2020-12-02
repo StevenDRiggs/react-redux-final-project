@@ -20,3 +20,25 @@ export const loadImages = userId => {
     }
   }
 }
+
+export const addImage = attrs => {
+  return dispatch => {
+    fetch(`${DATABASE_URL}/images`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        url: attrs.imageUrl,
+        user_id: attrs.userId,
+      })
+    })
+    .then(response => response.json())
+    .then(json => dispatch({
+      type: 'SET_IMAGES',
+      images: json.images,
+      errors: json.errors,
+    }))
+  }
+}

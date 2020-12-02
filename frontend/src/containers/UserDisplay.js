@@ -5,6 +5,7 @@ import Avatar from '../components/Avatar'
 import ImagesContainer from './ImagesContainer'
 import { loadImages } from '../actions/imageActions'
 import { setShowAllImages } from '../actions/userActions'
+import AddImageForm from '../forms/AddImageForm'
 
 import './UserDisplay.css'
 
@@ -12,6 +13,7 @@ import './UserDisplay.css'
 class UserDisplay extends Component {
   state = {
     showAllImages: this.props.user.showAllImages,
+    showAddImageForm: false,
   }
 
   handleCheckboxToggle = event => {
@@ -25,7 +27,16 @@ class UserDisplay extends Component {
     }
 
     this.setState({
+      ...this.state,
       showAllImages: !this.state.showAllImages,
+    })
+  }
+
+  handleButtonClick = event => {
+    event.preventDefault()
+    this.setState({
+      ...this.state,
+      showAddImageForm: !this.state.showAddImageForm,
     })
   }
 
@@ -36,10 +47,16 @@ class UserDisplay extends Component {
 
   render() {
     const { user } = this.props
-    const { showAllImages } = this.state
+    const { showAllImages, showAddImageForm } = this.state
     return (
       <div id='user-display'>
         <Avatar avatarUrl={user.avatarUrl} />
+        {showAddImageForm
+          ?
+            <AddImageForm exit={this.handleButtonClick} userId={user.userId} />
+          :
+            <button name='add-image' onClick={this.handleButtonClick}>Add Image</button>
+        }
         <label htmlFor='show-all-images'>Show all images</label>
         <input type='checkbox' name='show-all-images' id='show-all-images' defaultChecked={showAllImages} onClick={this.handleCheckboxToggle} />
         <ImagesContainer />

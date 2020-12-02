@@ -7,9 +7,24 @@ import './ImagesContainer.css'
 
 
 const ImagesContainer = props => {
+  const { images, errors } = props
+  // debugger
   return (
     <div className="ImagesContainer">
-      {props.images.map(image => <Image key={image.id} src={image.url} />)}
+      {errors
+        ?
+          <ul className='errors'>
+            {errors.map((error, index) => <li key={index}>{error}</li>)}
+          </ul>
+        :
+          null
+      }
+      {images
+        ?
+          images.map(image => <Image key={image.id} src={image.url} />)
+        :
+          null
+      }
     </div>
   )
 }
@@ -17,7 +32,8 @@ const ImagesContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    images: state.images,
+    images: state.images.images,
+    errors: state.images.errors,
   }
 }
 
