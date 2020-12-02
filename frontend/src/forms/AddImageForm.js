@@ -31,7 +31,7 @@ class AddImageForm extends Component {
   }
 
   render() {
-    const { onSubmit, exit } = this.props
+    const { exit } = this.props
     return (
       <form onSubmit={this.handleSubmit}>
         <input type='text' name='imageUrl' onChange={this.handleChange} value={this.state.imageUrl} placeholder='Image URL' />
