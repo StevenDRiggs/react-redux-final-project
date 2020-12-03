@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { SVG } from '@svgdotjs/svg.js'
 
 import Avatar from '../components/Avatar'
 import ImagesContainer from './ImagesContainer'
@@ -43,6 +44,18 @@ class UserDisplay extends Component {
   componentDidMount() {
     const { user, loadImages } = this.props
     loadImages(user.userId)
+
+    const caterpillar = document.querySelector('svg#caterpillar')
+    const caterpillarSVG = SVG(caterpillar)
+    caterpillarSVG.animate(250, 500, 'now')
+      .transform({
+        scale: 1.1,
+      })
+      .animate(200, 2000, 'now')
+      .transform({
+        scale: 0.4,
+        position: [0,0],
+      })
   }
 
   render() {
