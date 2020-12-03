@@ -45,9 +45,12 @@ class UserDisplay extends Component {
     const { user, loadImages } = this.props
     loadImages(user.userId)
 
-    const caterpillar = document.querySelector('svg#caterpillar')
-    const caterpillarSVG = SVG(caterpillar)
-    caterpillarSVG.animate(250, 500, 'now')
+    const caterpillar = SVG(document.querySelector('svg#caterpillar'))
+    const avatar = document.querySelector('svg #avatar')
+    const caterpillarHead = SVG(document.querySelector('svg #head-head'))
+    const caterpillarFace = SVG(document.querySelector('svg #head-face'))
+
+    caterpillar.animate(250, 500, 'now')
       .transform({
         scale: 1.1,
       })
@@ -56,6 +59,14 @@ class UserDisplay extends Component {
         scale: 0.4,
         position: [0,0],
       })
+
+    caterpillarFace.animate(450, 2500, 'now')
+      .attr('opacity', 0)
+
+    caterpillarHead.animate(450, 2500, 'now')
+      .attr('opacity', 0)
+
+    // setTimeout(() => avatar.backgroundImage = user.avatarUrl, 450)
   }
 
   render() {
@@ -63,7 +74,7 @@ class UserDisplay extends Component {
     const { showAllImages, showAddImageForm } = this.state
     return (
       <div id='user-display'>
-        <Avatar avatarUrl={user.avatarUrl} />
+        {/* <Avatar avatarUrl={user.avatarUrl} /> */}
         {showAddImageForm
           ?
             <AddImageForm exit={this.handleButtonClick} userId={user.userId} />

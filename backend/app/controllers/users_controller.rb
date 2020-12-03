@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def create
     user = User.new(user_params)
-    user.avatar = "https://picsum.photos/50"
+    user.avatar = "https://picsum.photos/100"
     
     if user.save
       render json: {

@@ -53,6 +53,10 @@ const App = props => {
               <circle id='head-antennae-right-pistil' cx="60" cy="80" r="10" stroke="black" strokeWidth="5" fill="gray"></circle>
             </g>
           </g>
+          <clipPath id='avatar-clip'>
+            <circle id='avatar' cx="50" cy="150" r="50"></circle>
+          </clipPath>
+          {user ? <image x="0" y="100" width="100" height="100" xlinkHref={user.avatarUrl} clipPath='url(#avatar-clip)'></image> : null}
           <circle id='head-head' cx="50" cy="150" r="50" fill="red"></circle>
           <g id='head-face'>
             <g id='head-face-eyes'>
