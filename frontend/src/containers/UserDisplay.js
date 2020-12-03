@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { SVG } from '@svgdotjs/svg.js'
 
-import Avatar from '../components/Avatar'
 import ImagesContainer from './ImagesContainer'
 import { loadImages } from '../actions/imageActions'
 import { setShowAllImages } from '../actions/userActions'
@@ -45,19 +44,19 @@ class UserDisplay extends Component {
     const { user, loadImages } = this.props
     loadImages(user.userId)
 
-    const caterpillar = SVG(document.querySelector('svg#caterpillar'))
-    const avatar = document.querySelector('svg #avatar')
+    const caterpillar = document.querySelector('svg#caterpillar')
+    const caterpillarSVG = SVG(caterpillar)
     const caterpillarHead = SVG(document.querySelector('svg #head-head'))
     const caterpillarFace = SVG(document.querySelector('svg #head-face'))
 
-    caterpillar.animate(250, 500, 'now')
+    caterpillarSVG.animate(250, 500, 'now')
       .transform({
         scale: 1.1,
       })
       .animate(200, 2000, 'now')
       .transform({
         scale: 0.4,
-        position: [0,0],
+        translate: [-100, -175],
       })
 
     caterpillarFace.animate(450, 2500, 'now')
@@ -66,7 +65,13 @@ class UserDisplay extends Component {
     caterpillarHead.animate(450, 2500, 'now')
       .attr('opacity', 0)
 
-    // setTimeout(() => avatar.backgroundImage = user.avatarUrl, 450)
+    const moveCaterpillar = () => {
+      caterpillar.style.position = 'fixed'
+      caterpillar.style.left = "0"
+      caterpillar.style.top = "0"
+    }
+
+    setTimeout(moveCaterpillar, 2950)
   }
 
   render() {
@@ -74,7 +79,6 @@ class UserDisplay extends Component {
     const { showAllImages, showAddImageForm } = this.state
     return (
       <div id='user-display'>
-        {/* <Avatar avatarUrl={user.avatarUrl} /> */}
         {showAddImageForm
           ?
             <AddImageForm exit={this.handleButtonClick} userId={user.userId} />
