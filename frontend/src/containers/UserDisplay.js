@@ -45,6 +45,8 @@ class UserDisplay extends Component {
     loadImages(user.userId)
 
     const caterpillar = document.querySelector('svg#caterpillar')
+    caterpillar.style.display = 'flex'
+
     const caterpillarSVG = SVG(caterpillar)
     const caterpillarHead = SVG(document.querySelector('svg #head-head'))
     const caterpillarFace = SVG(document.querySelector('svg #head-face'))
