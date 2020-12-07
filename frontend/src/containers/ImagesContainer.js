@@ -3,11 +3,13 @@ import { connect } from 'react-redux'
 
 import Image from '../components/Image'
 
+import './ImagesContainer.css'
+
 
 const ImagesContainer = props => {
   const { images, errors } = props
   return (
-    <div className="ImagesContainer">
+    <div className='images-container row mt-5'>
       {errors
         ?
           <ul className='errors'>

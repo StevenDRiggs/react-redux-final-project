@@ -7,6 +7,8 @@ import { loadImages } from '../actions/imageActions'
 import { setShowAllImages } from '../actions/userActions'
 import AddImageForm from '../forms/AddImageForm'
 
+import './UserDisplay.css'
+
 
 class UserDisplay extends Component {
   state = {
@@ -78,7 +80,7 @@ class UserDisplay extends Component {
     const { user } = this.props
     const { showAllImages, showAddImageForm } = this.state
     return (
-      <div id='user-display'>
+      <div id='user-display' className='container'>
         {showAddImageForm
           ?
             <AddImageForm exit={this.handleButtonClick} userId={user.userId} />

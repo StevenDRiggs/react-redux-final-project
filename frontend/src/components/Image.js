@@ -18,8 +18,8 @@ const Image = props => {
   }    
 
   return (
-    <div className='Image'>
-      <img src={imageSrc} alt='' />
+    <div className='image w-25'>
+      <img src={imageSrc} alt='' width='100%' />
     </div>
   )
 }
