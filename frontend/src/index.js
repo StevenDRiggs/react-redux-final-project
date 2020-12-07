@@ -8,8 +8,6 @@ import * as serviceWorker from './serviceWorker'
 import App from './containers/App'
 import rootReducer from './reducers/rootReducer'
 
-import './index.css'
-
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer, composeEnhancers(

@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import './Image.css'
-
 
 const Image = props => {
   let imageSrc = props.src

@@ -7,8 +7,6 @@ import { loadImages } from '../actions/imageActions'
 import { setShowAllImages } from '../actions/userActions'
 import AddImageForm from '../forms/AddImageForm'
 
-import './UserDisplay.css'
-
 
 class UserDisplay extends Component {
   state = {

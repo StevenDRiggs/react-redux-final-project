@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import { addUser } from '../actions/userActions'
 
-import './Signup.css'
-
 
 const initialState = {
   user: {

@@ -14,8 +14,6 @@ import Signup from '../forms/Signup'
 import Login  from '../forms/Login'
 import Splash from '../components/Splash'
 
-import './App.css'
-
 
 const App = props => {
   const { user } = props

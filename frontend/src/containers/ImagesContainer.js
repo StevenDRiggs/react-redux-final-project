@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import Image from '../components/Image'
 
-import './ImagesContainer.css'
-
 
 const ImagesContainer = props => {
   const { images, errors } = props
