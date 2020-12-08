@@ -9,35 +9,43 @@ import './ImagesContainer.css'
 class ImagesContainer extends Component {
   state = {
     centerImageId: null,
+    centerImageUrl: null,
   }
 
-  componentDidMount() {
-    const { images } = this.props
-    if (images.length > 0) {
-      const imageIds = images.map(image => image.id)
-      const lowerId = Math.min(...imageIds)
-      const upperId = Math.max(...imageIds)
-      let mid = Math.floor((lowerId + upperId) / 2)
+  setCenterImageState = (state, props) => {
+    const { images } = props
+    const imagesIds = images.map(image => image.id)
+    const lowerId = Math.min(...imagesIds)
+    const upperId = Math.min(...imagesIds)
+    let mid = Math.floor((lowerId + upperId) / 2)
 
-      while (mid > lowerId && !imageIds.includes(mid)) {
-        mid -= 1
-      }
+    while (mid > lowerId && !imagesIds.includes(mid)) {
+      mid -= 1
+    }
 
-      this.setState({
+    const centerImage = images.find(image => image.id === mid)
+
+    if (centerImage) {
+      const centerImageUrl = centerImage.url
+
+      return {
         centerImageId: mid,
-      })
+        centerImageUrl: centerImageUrl,
+      }
+    } else {
+      return null
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.images !== this.props.images) {
+      this.setState(this.setCenterImageState)
     }
   }
 
   render() {
     const { images, errors } = this.props
-    const { centerImageId } = this.state
-    let centerImage
-    let centerImageUrl
-    if (centerImageId) {
-      centerImage = images.find(image => image.id === centerImageId)
-      centerImageUrl = centerImage.url
-    }
+    const { centerImageId, centerImageUrl } = this.state
 
     return (
       <div className='images-container row mt-5 d-flex'>
@@ -47,24 +55,23 @@ class ImagesContainer extends Component {
               {errors.map((error, index) => <li key={index}>{error}</li>)}
             </ul>
           :
-            null
+          null
         }
-      {centerImageId
-          ?
-            <>
+        {centerImageUrl
+            ?
+              <>
               <div id='left-images' className='d-inline-block'>
                 {images.filter(image => image.id < centerImageId).map(image => <Image key={image.id} src={image.url} />)}
               </div>
               <div id='center-image' className='d-inline-block'>
-                {centerImageUrl}
                 <Image src={centerImageUrl} />
               </div>
               <div id='right-images' className='d-inline-block'>
                 {images.filter(image => image.id > centerImageId).map(image => <Image key={image.id} src={image.url} />)}
               </div>
-            </>
-          :
-            null
+              </>
+            :
+              null
         }
       </div>
     )
