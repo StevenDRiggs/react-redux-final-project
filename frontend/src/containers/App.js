@@ -5,7 +5,7 @@ import {
   Switch,
   Route,
   Redirect,
-  Link,
+  //Link,
 } from 'react-router-dom'
 
 import UserDisplay from './UserDisplay'
@@ -20,7 +20,7 @@ const App = props => {
   return (
     <div className='app container justify-content-center'>
       <Router>
-    {/*<Link to={user.userId ? `/user/${user.userId}` : '#'} disabled={user.userId ? false : true}>*/}
+        {/*<Link to={user.userId ? `/user/${user.userId}` : '#'} disabled={user.userId ? false : true}>*/}
           <svg id='caterpillar' className='row justify-content-center mx-auto' width="300" height="300">
             <circle id='tail3' cx="200" cy="150" r="20" fill="violet"></circle>
             <circle id='tail2' cx="180" cy="160" r="30" fill="indigo"></circle>
@@ -69,33 +69,35 @@ const App = props => {
               </g>
             </g>
           </svg>
-    {/*</Link>*/}
+        {/*</Link>*/}
 
         {user.errors
-          ?
+            ?
             <ul className='errors row'>
-              {user.errors.map((error, index) => <li key={index}>{error}</li>)}
+            {user.errors.map((error, index) => <li key={index}>{error}</li>)}
             </ul>
-          :
+            :
             null
         }
-        <Switch>
-          {user.userId
-            ?
-              <div className='row justify-content-center'>
+        <div className='row justify-content-center'>
+          <Switch>
+            {user.userId
+              ?
+              <>
                 <Redirect from='/signup' to='/' />
                 <Redirect from='/login' to='/' />
-            {/*<Route path='/user/:userId' component={UserProfile} />*/}
+                {/*<Route path='/user/:userId' component={UserProfile} />*/}
                 <Route exact path='/' component={UserDisplay} />
-              </div>
-            :
-              <div className='row justify-content-center'>
+              </>
+              :
+              <>
                 <Route path='/signup' component={Signup} />
                 <Route path='/login' component={Login} />
                 <Route exact path='/' component={Splash} />
-              </div>
-          }
-        </Switch>
+              </>
+            }
+          </Switch>
+        </div>
       </Router>
     </div>
   )
